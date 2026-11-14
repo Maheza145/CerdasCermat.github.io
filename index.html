@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Family 100 – Kuis Babak 1</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600&display=swap">
+<style>
+:root{--brown:#62260E;--rust:#9B5B2A;--olive:#9A9468;--cream:#E5D5AB;--bg:#F1EBE2;--card:#FBF8F3;--ink:#2A1408;--mut:#7a6552;--line:#dccfbd;--nav:#1d0e06;--navink:#F1EBE2;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1a0e07;--card:#26150b;--ink:#F1EBE2;--mut:#b7a38a;--line:#43291a;--nav:#E5D5AB;--navink:#2A1408;--brown:#E5D5AB}}
+:root[data-theme="dark"]{--bg:#1a0e07;--card:#26150b;--ink:#F1EBE2;--mut:#b7a38a;--line:#43291a;--nav:#E5D5AB;--navink:#2A1408;--brown:#E5D5AB}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 "Inter Tight",system-ui,sans-serif;min-height:100vh}
+.serif{font-family:"Instrument Serif",Georgia,serif}
+.wrap{max-width:980px;margin:0 auto;padding:16px 20px 56px}
+nav{display:flex;align-items:center;justify-content:space-between;background:var(--nav);color:var(--navink);border-radius:999px;padding:10px 12px 10px 20px;font-weight:500}
+nav b{font-weight:600}
+.btn{font:inherit;cursor:pointer;border:1px solid var(--ink);background:transparent;color:var(--ink);border-radius:999px;padding:11px 26px;font-weight:500;transition:.15s}
+.btn:hover{background:var(--ink);color:var(--bg)}
+.btn.solid{background:var(--nav);color:var(--navink);border-color:var(--nav)}
+.btn.solid:hover{opacity:.85}
+.btn.sm{padding:7px 16px;font-size:14px}
+nav .btn{border-color:var(--navink);color:var(--navink)}nav .btn:hover{background:var(--navink);color:var(--nav)}
+button:focus-visible,input:focus-visible{outline:3px solid var(--rust);outline-offset:2px}
+h1{font-weight:500;font-size:clamp(38px,8vw,76px);line-height:1;letter-spacing:-.03em;text-transform:uppercase;margin:48px 0 24px}
+.hero{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-end}
+.stats{display:flex;gap:20px;color:var(--mut);font-size:14px}.stats b{display:block;font-size:26px;color:var(--ink);font-weight:500}
+.banner{margin-top:36px;border-radius:6px;min-height:230px;background:linear-gradient(180deg,#e5d5ab 0 38%,#9A9468 38% 58%,#9B5B2A 58% 100%);position:relative;overflow:hidden}
+.banner i{position:absolute;bottom:0;background:var(--brown);display:block}
+.banner .b1{left:8%;width:30%;height:52%;background:#62260E}.banner .b2{left:34%;width:22%;height:72%;background:#9B5B2A}.banner .b3{left:52%;width:34%;height:40%;background:#62260E}
+.banner .b2:after{content:"";position:absolute;left:30%;top:22%;width:40%;height:34%;border-radius:999px 999px 0 0;background:#E5D5AB}
+.panel{background:var(--card);border-radius:14px;padding:24px;margin-top:-56px;position:relative;margin-inline:20px;box-shadow:0 12px 40px rgba(60,25,8,.12)}
+.field{display:flex;gap:12px;flex-wrap:wrap;align-items:end}
+.field label{display:block;font-size:13px;color:var(--mut);margin-bottom:4px}
+input[type=text]{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px 14px;width:100%}
+.grow{flex:1;min-width:200px}
+h2{font-weight:400;font-size:clamp(30px,5vw,44px);margin:44px 0 6px;letter-spacing:-.01em}
+.sub{color:var(--mut);margin:0 0 22px}
+.cats{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.cat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:20px;text-align:left;cursor:pointer;font:inherit;color:inherit;display:flex;flex-direction:column;gap:6px;transition:.15s}
+.cat:hover{border-color:var(--rust);transform:translateY(-2px)}
+.cat strong{font-size:19px;font-weight:600}.cat span{color:var(--mut);font-size:14px}
+.cat em{margin-top:8px;font-style:normal;font-size:13px;color:var(--rust);font-weight:600}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:28px;color:var(--mut);font-size:14px}
+.score{font-size:15px;color:var(--ink)}.score b{font-size:30px;font-weight:500;color:var(--rust)}
+.q{font-size:clamp(28px,5vw,42px);line-height:1.12;margin:18px 0 26px;font-weight:400}
+.board{display:grid;gap:10px}
+.row{display:flex;align-items:center;gap:14px;border-radius:8px;padding:14px 18px;min-height:56px;background:var(--card);border:1px solid var(--line);transition:.25s}
+.row .n{width:28px;color:var(--mut);font-size:14px}
+.row .t{flex:1;font-weight:500;font-size:18px}.row .p{font-weight:600;font-size:20px;color:var(--rust)}
+.row.h .t,.row.h .p{visibility:hidden}.row.h{background:repeating-linear-gradient(135deg,var(--card) 0 10px,var(--bg) 10px 20px)}
+.row.f{background:var(--brown);border-color:var(--brown)}.row.f .t,.row.f .n{color:var(--bg)}.row.f .p{color:var(--cream)}
+:root[data-theme="dark"] .row.f .t,:root[data-theme="dark"] .row.f .n{color:#2A1408}
+.row.m{border-style:dashed;border-color:var(--olive)}.row.m .t{color:var(--mut)}
+.ans{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}.ans input{flex:1;min-width:200px;font-size:18px}
+.fb{min-height:28px;margin:12px 0 0;font-weight:500}.fb.ok{color:#5d6b2a}.fb.no{color:#b3361d}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .fb.ok{color:#c3cf8a}:root:not([data-theme="light"]) .fb.no{color:#ff9d85}.row.f .t,.row.f .n{color:#2A1408}}
+.strikes{letter-spacing:4px;color:#b3361d;font-weight:600}
+.end{text-align:center;padding:40px 0}.end .big{font-size:clamp(80px,18vw,150px);line-height:1;color:var(--rust)}
+.end .acts{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+.tm{height:8px;background:var(--line);border-radius:99px;overflow:hidden;margin:6px 0}.tm i{display:block;height:100%;width:100%;background:var(--rust)}
+button.row{font:inherit;color:inherit;text-align:left;width:100%;cursor:pointer}button.row:disabled{color:inherit;cursor:default}.row.opt:hover:not(:disabled){border-color:var(--rust)}
+.shake{animation:sh .35s}@keyframes sh{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><b class="serif" style="font-size:22px">Cerdas Cermat Makrab HIMATIF 2026</b><button class="btn sm" id="home">Kategori</button></nav>
+<main id="app"></main>
+</div>
+<script>
+const A=(l,p,...k)=>({l,p,k:[l.replace(/\s*\(.*?\)\s*/g,' ').trim(),...k]});
+const CATS1=[
+{name:"Kepemimpinan",desc:"Sifat, kepercayaan, dan sikap pemimpin saat konflik.",qs:[
+{q:"Sebutkan sifat yang harus dimiliki seorang pemimpin!",a:[A("Bertanggung jawab",30,"tanggung jawab"),A("Tegas",25),A("Jujur",20,"kejujuran"),A("Adil",15),A("Komunikatif",10,"komunikasi")]},
+{q:"Sebutkan penyebab hilangnya kepercayaan anggota terhadap pemimpin!",a:[A("Tidak bertanggung jawab",30,"lepas tanggung jawab"),A("Tidak konsisten",25,"plin plan","inkonsisten"),A("Tidak adil",20,"pilih kasih"),A("Kurang komunikasi",15),A("Tidak menerima kritik",10,"anti kritik")]},
+{q:"Sebutkan kemampuan yang harus dimiliki seorang pemimpin dalam menghadapi konflik!",a:[A("Komunikasi",30),A("Pengambilan keputusan",25,"mengambil keputusan","keputusan"),A("Pengendalian emosi",20,"mengontrol emosi","kontrol emosi","sabar"),A("Negosiasi",15),A("Pemecahan masalah",10,"problem solving","memecahkan masalah")]}]},
+{name:"Keorganisasian",desc:"Keaktifan anggota, persiapan program kerja, solidaritas.",qs:[
+{q:"Sebutkan faktor yang menyebabkan anggota organisasi menjadi tidak aktif!",a:[A("Kurang motivasi",30,"malas","tidak termotivasi"),A("Manajemen waktu buruk",25,"tidak bisa mengatur waktu","sibuk","bentrok jadwal"),A("Lingkungan tidak nyaman",20,"lingkungan"),A("Kurang komunikasi",15),A("Program kerja kurang menarik",10,"proker membosankan","program tidak menarik")]},
+{q:"Sebutkan hal yang harus dipersiapkan sebelum melaksanakan program kerja!",a:[A("Konsep kegiatan",30,"konsep"),A("Anggaran dana",25,"dana","anggaran","budget"),A("Pembentukan panitia",20,"panitia"),A("Timeline kegiatan",15,"timeline","jadwal"),A("Perizinan dan perlengkapan",10,"perizinan","izin","perlengkapan")]},
+{q:"Sebutkan hal yang dapat meningkatkan solidaritas dalam organisasi!",a:[A("Komunikasi yang baik",30,"komunikasi"),A("Kerja sama",25,"kerjasama"),A("Saling menghargai",20,"menghargai"),A("Kegiatan bersama",15,"kegiatan"),A("Saling membantu",10,"membantu","tolong menolong")]}]},
+{name:"Algoritma dan Pemrograman Dasar",desc:"Tipe data, operator, dan struktur dasar algoritma.",qs:[
+{q:"Sebutkan tipe data yang umum digunakan dalam pemrograman!",a:[A("Integer",30,"int"),A("String",25,"str"),A("Boolean",20,"bool"),A("Float",15),A("Double",10)]},
+{q:"Sebutkan operator yang sering digunakan dalam pemrograman!",a:[A("Penjumlahan (+)",30,"+","tambah","plus"),A("Pengurangan (-)",25,"-","kurang","minus"),A("Perkalian (*)",20,"*","kali","x"),A("Pembagian (/)",15,"/","bagi"),A("Modulus (%)",10,"%","mod","sisa bagi")]},
+{q:"Sebutkan struktur dasar dalam algoritma pemrograman!",a:[A("Sequence",30,"urutan","sekuensial"),A("Selection",25,"seleksi","percabangan","if else"),A("Iteration/Looping",20,"iteration","iterasi","looping","perulangan","loop"),A("Input",15,"masukan"),A("Output",10,"keluaran")]}]},
+{name:"Kalkulus Dasar",desc:"Limit, turunan, integral, dan aturan turunan.",qs:[
+{q:"Sebutkan materi yang dipelajari dalam kalkulus dasar!",a:[A("Limit",30),A("Turunan",25,"diferensial","derivatif"),A("Integral",20),A("Fungsi",15),A("Kekontinuan",10,"kontinuitas","kontinu")]},
+{q:"Sebutkan fungsi matematika yang sering digunakan dalam kalkulus!",a:[A("Fungsi polinomial",30,"polinomial","polinom"),A("Fungsi eksponensial",25,"eksponensial","eksponen"),A("Fungsi trigonometri",20,"trigonometri","sin cos tan"),A("Fungsi logaritma",15,"logaritma","log"),A("Fungsi rasional",10,"rasional")]},
+{q:"Sebutkan aturan yang digunakan dalam perhitungan turunan!",a:[A("Aturan pangkat",30,"pangkat"),A("Aturan penjumlahan",25,"penjumlahan"),A("Aturan perkalian",20,"perkalian"),A("Aturan pembagian",15,"pembagian"),A("Aturan rantai",10,"rantai","chain rule")]}]},
+{name:"Pemrograman Visual",desc:"Event yang digunakan dalam pemrograman visual.",qs:[
+{q:"Sebutkan contoh event yang dapat digunakan dalam pemrograman visual!",a:[A("Click",30,"klik","on click"),A("Mouse Hover",25,"hover"),A("Key Press",20,"keypress","key down","tekan tombol","keydown"),A("Mouse Enter",15,"mouseenter"),A("Mouse Exit",10,"mouseexit","mouse leave","mouseleave")]}]},
+{name:"Pengetahuan Umum",desc:"Bahasa pemrograman, perangkat keras, keamanan digital, dan OOP.",qs:[
+{q:"Sebutkan bahasa pemrograman yang populer!",a:[A("Python",30),A("Java",25),A("JavaScript",20,"js"),A("C++",15,"cpp","c plus plus"),A("PHP",10)]},
+{q:"Sebutkan perangkat keras komputer!",a:[A("Monitor",30,"layar"),A("Keyboard",25,"papan ketik"),A("Mouse",20),A("Processor",15,"prosesor","cpu"),A("RAM",10,"memori")]},
+{q:"Sebutkan ancaman keamanan digital!",a:[A("Virus",30),A("Phishing",25,"fishing"),A("Malware",20),A("Ransomware",15),A("Spyware",10)]},
+{q:"Apa itu class!",a:[A("Blueprint",30)],d:["Perulangan","Tipe data"]},
+{q:"Sebutkan pengertian dan macam-macam method!",a:[A("Pengertian: sekumpulan kode untuk tugas tertentu",40,"sekumpulan kode","kumpulan kode","tugas tertentu","fungsi tertentu","dapat digunakan kembali","terstruktur"),A("Method tanpa parameter",30,"tanpa parameter","tanpa berparameter","tidak berparameter"),A("Method dengan parameter",30,"berparameter","ada parameter","dengan parameter","parameter")]}]}
+];
+const R=(q,a,k)=>({q,a,k:k||[a]});
+const REB=[
+{name:'Kepemimpinan dan Keorganisasian',desc:'Gaya kepemimpinan, RAB, evaluasi, administrasi.',qs:[
+R('Apa istilah gaya kepemimpinan yang melibatkan anggota dalam pengambilan keputusan?','Demokratis',['Demokratis','Demokrasi']),
+R('Apa istilah kemampuan seseorang dalam mempengaruhi orang lain untuk mencapai tujuan bersama?','Kepemimpinan (Leadership)',['Kepemimpinan','Leadership']),
+R('Apa nama dokumen yang berisi rincian anggaran pemasukan dan pengeluaran kegiatan?','RAB (Rencana Anggaran Biaya)',['RAB','Rencana Anggaran Biaya']),
+R('Apa istilah untuk kegiatan mengevaluasi hasil pelaksanaan program kerja?','Evaluasi'),
+R('Siapa yang bertanggung jawab mengelola administrasi dan surat-menyurat organisasi?','Sekretaris')]},
+{name:'Algoritma dan Pemrograman Dasar',desc:'Boolean, looping, percabangan, error, variabel.',qs:[
+R('Apa simbol yang digunakan untuk menyatakan kondisi benar atau salah?','Boolean',['Boolean','Bool']),
+R('Apa hasil dari 10 % 3 dalam pemrograman?','1'),
+R('Struktur apa yang digunakan untuk menjalankan perintah secara berulang?','Looping',['Looping','Loop','Perulangan','Iterasi','Iteration']),
+R('Apa fungsi dari perintah IF dalam pemrograman?','Percabangan atau pengambilan keputusan berdasarkan kondisi',['~percabangan','~keputusan','~kondisi','~seleksi','~selection']),
+R('Apa istilah untuk kesalahan dalam penulisan kode program?','Syntax Error',['Syntax Error','Error Syntax','~syntax','~sintaks']),
+R('Apa hasil dari 5 * 4 + 2?','22'),
+R('Apa istilah untuk tempat penyimpanan data dalam program yang nilainya dapat berubah?','Variable',['Variable','Variabel'])]},
+{name:'Kalkulus Dasar',desc:'Turunan, limit, integral, trigonometri.',qs:[
+R('Berapakah hasil turunan dari f(x) = 5x²?','10x'),
+R('Berapakah nilai limit x mendekati 2 dari fungsi f(x) = x + 3?','5'),
+R('Berapakah hasil integral dari 2x?','x² + C',['x^2+C']),
+R('Berapakah hasil turunan dari f(x) = 7x?','7'),
+R('Berapakah turunan dari fungsi konstanta f(x) = 9?','0',['0','Nol']),
+R('Berapakah nilai dari sin 30°?','1/2',['1/2','0.5','0,5','Setengah'])]},
+{name:'Pemrograman Visual',desc:'GUI, komponen Java Swing, event.',qs:[
+R('Apa kepanjangan dari GUI?','Graphical User Interface'),
+R('Komponen apa yang digunakan untuk menampilkan teks pada aplikasi Java Swing?','JLabel'),
+R('Komponen apa yang digunakan untuk menerima input teks dari pengguna dalam Java Swing?','JTextField'),
+R('Apa fungsi JButton?','Membuat tombol yang dapat diklik',['~tombol','~button','~klik']),
+R('Apa istilah tindakan yang terjadi ketika pengguna menekan sebuah tombol?','Event',['Event','Action Event'])]},
+{name:'Pengetahuan Umum',desc:'HTML, internet, RAM.',qs:[
+R('Apa kepanjangan dari HTML?','HyperText Markup Language'),
+R('Apa nama jaringan global yang menghubungkan berbagai komputer di seluruh dunia?','Internet'),
+R('Apa kepanjangan dari RAM?','Random Access Memory')]}];
+const FIN=[{name:'Grand Final',desc:'8 soal analisis dan perhitungan, 15 detik per soal.',qs:[
+R('Seorang ketua memiliki anggota yang kompeten, tetapi sering terjadi konflik karena perbedaan pendapat. Apa tindakan pertama yang sebaiknya dilakukan ketua?','Mengidentifikasi masalah dan memfasilitasi komunikasi atau musyawarah',['~identifikasi','~musyawarah','~komunikasi','~diskusi','~mediasi','~dialog']),
+R('Apa perbedaan utama antara pemimpin dan manajer?','Pemimpin berfokus pada arah, pengaruh, dan visi, sedangkan manajer berfokus pada pengelolaan dan pelaksanaan',['~visi','~arah','~pengaruh','~mempengaruhi','~mengelola','~pengelolaan','~pelaksanaan']),
+R('Jika sebuah program kerja gagal mencapai target, apa langkah evaluasi pertama yang perlu dilakukan?','Mengidentifikasi penyebab kegagalan berdasarkan perencanaan dan pelaksanaan',['~penyebab','~identifikasi','~analisis','~perencanaan']),
+R('Jika terdapat kode: int a = 5; int b = 3; System.out.println(a * b + 2); Apa hasil output-nya?','17'),
+R('Tentukan turunan pertama dari f(x) = 4x³ + 2x² - 5x + 7!',`f'(x) = 12x² + 4x - 5`,['12x^2+4x-5']),
+R('Jika hari ini adalah Rabu, 100 hari kemudian jatuh pada hari apa?','Jumat'),
+R('Sebuah komputer memiliki RAM 8 GB dan ditambah RAM 8 GB. Berapa total kapasitas RAM setelah penambahan?','16 GB',['16 GB','16']),
+R('Jika 5 orang menyelesaikan pekerjaan dalam 10 hari dengan kemampuan yang sama, berapa hari yang dibutuhkan 10 orang untuk menyelesaikan pekerjaan yang sama?','5 hari',['5 hari','5'])]}];
+const ROUNDS=[
+{name:'Babak 1',title:'Penyisihan',type:'mc',cats:CATS1,desc:'Family 100: pilih satu jawaban dari pilihan yang tersedia.',rule:'Pilihan ganda · poin 10–40 per soal'},
+{name:'Babak 2',title:'Semifinal',type:'timed',cats:REB,time:10,pts:20,neg:10,desc:'Rebutan: ketik jawaban tanpa pilihan, siapa cepat dia dapat.',rule:'10 detik · benar +20 · salah −10'},
+{name:'Babak 3',title:'Final',type:'timed',cats:FIN,time:15,pts:30,neg:0,desc:'Grand Final: soal analisis, perhitungan, dan pemecahan masalah.',rule:'15 detik · benar +30 · salah 0'}];
+let CATS=CATS1,TI=null;
+const mn=s=>s.toLowerCase().replace(/f'?\(x\)\s*=?/g,'').replace(/²/g,'2').replace(/³/g,'3').replace(/[\s^*]/g,'');
+const maxOf=q=>Array.isArray(q.a)?Math.max(...q.a.map(y=>y.p)):ROUNDS[S.r].pts;
+function mk(inp,keys){const n=norm(inp),m=mn(inp);if(!n&&!m)return false;return keys.some(k=>{if(k[0]==='~')return n.includes(norm(k.slice(1)));const nk=norm(k);if(mn(k)===m||nk===n)return true;return !/\d/.test(k)&&nk.length>=4&&lev(n,nk)<=Math.floor(nk.length/5)})}
+const MAXS=3;
+let S={r:0,screen:"cats",name:"",cat:0,qi:0,found:[],missed:false,strikes:0,score:0,done:false,fb:"",fbc:""};
+const $=s=>document.querySelector(s),app=$("#app");
+const norm=s=>s.toLowerCase().replace(/[^a-z0-9+\-*\/%\s]/g,' ').replace(/\s+/g,' ').trim();
+function lev(a,b){const d=[...Array(b.length+1).keys()];for(let i=1;i<=a.length;i++){let p=d[0];d[0]=i;for(let j=1;j<=b.length;j++){const t=d[j];d[j]=Math.min(d[j]+1,d[j-1]+1,p+(a[i-1]===b[j-1]?0:1));p=t}}return d[b.length]}
+function validate(inp,q){
+ const n=norm(inp);if(!n)return -1;
+ const open=q.a.map((x,i)=>i).filter(i=>!S.found.includes(i));
+ for(const i of open){if(q.a[i].k.some(k=>{k=norm(k);return k===n||(n.length>=4&&lev(n,k)<=Math.floor(k.length/5))}))return i}
+ for(const i of open){if(q.a[i].k.some(k=>{k=norm(k);return k.length>=4&&n.length>=4&&(n.includes(k)||k.includes(n))}))return i}
+ return -1}
+function go(s){clearInterval(TI);S.screen=s;render()}
+function start(c){S.cat=c;S.qi=0;S.score=0;S.found=[];S.strikes=0;S.done=false;S.fb="";go("quiz")}
+function render(){
+ const C=CATS[S.cat];
+ if(S.screen==="rounds"){renderRounds();return}if(S.screen==="timed"){renderTimed();return}
+ if(S.screen==="home"){app.innerHTML=`
+ <div class="hero"><h1 class="serif" style="margin-bottom:0">Jawab seperti<br>mayoritas.</h1>
+ <div class="stats"><div><b>${CATS1.length}</b>kategori</div><div><b>${CATS1.reduce((a,c)=>a+c.qs.length,0)}</b>soal</div></div></div>
+ <div class="banner"><i class="b1"></i><i class="b2"></i><i class="b3"></i></div>
+ <div class="panel"><div class="field"><div class="grow"><label for="nm">Nama peserta</label><input type="text" id="nm" placeholder="Masukkan nama" value="${S.name}" maxlength="30"></div>
+ <button class="btn solid" id="go">Mulai permainan</button></div></div>
+ <p class="sub" style="margin-top:28px;max-width:60ch">Setiap soal menampilkan pilihan jawaban. Pilih satu, dan poinnya terbuka setelah kamu memilih.</p>`;
+ $("#go").onclick=()=>{S.name=$("#nm").value.trim();go("cats")};
+ $("#nm").onkeydown=e=>{if(e.key==="Enter")$("#go").click()}}
+ else if(S.screen==="cats"){app.innerHTML=`<h2 class="serif">${S.name?`Halo, ${esc(S.name)}. `:""}Pilih kategori soal</h2><p class="sub">Skor dihitung per kategori.</p>
+ <div class="cats">${CATS.map((c,i)=>`<button class="cat" data-i="${i}"><strong>${c.name}</strong><span>${c.desc}</span><em>${c.qs.length} soal · maks ${c.qs.reduce((a,q)=>a+maxOf(q),0)} poin</em></button>`).join("")}</div>`;
+ document.querySelectorAll(".cat").forEach(b=>b.onclick=()=>start(+b.dataset.i))}
+ else if(S.screen==="quiz"){renderMC();return}else if(S.screen==="quizOld"){const q=C.qs[S.qi];
+ app.innerHTML=`<div class="bar"><span>${C.name} · soal ${S.qi+1} dari ${C.qs.length}</span><span class="score">Skor <b>${S.score}</b></span></div>
+ <h2 class="serif q">${q.q}</h2>
+ <div class="board">${q.a.map((x,i)=>{const f=S.found.includes(i),m=S.done&&!f;return `<div class="row ${f?'f':m?'m':'h'}"><span class="n">${i+1}</span><span class="t">${x.l}</span><span class="p">${x.p}</span></div>`}).join("")}</div>
+ ${S.done?`<p class="fb ${S.fbc}">${S.fb} Jawaban lainnya ditandai garis putus-putus.</p>
+ <div class="ans"><button class="btn solid" id="nx">${S.qi+1<C.qs.length?"Soal berikutnya":"Lihat hasil"}</button></div>`
+ :`<div class="ans"><input type="text" id="in" placeholder="Ketik jawabanmu" autocomplete="off" aria-label="Jawaban"><button class="btn solid" id="sb">Jawab</button><button class="btn" id="sk">Lewati</button></div>
+ <p class="fb" aria-live="polite">Hanya satu jawaban per soal.</p>
+ <p class="bar" style="margin-top:4px">Tulis satu jawaban terbaikmu</p>`}`;
+ if(S.done)$("#nx").onclick=next;else{const inp=$("#in");inp.focus();$("#sb").onclick=()=>submit(inp);inp.onkeydown=e=>{if(e.key==="Enter")submit(inp)};$("#sk").onclick=()=>{S.done=true;S.fb="Soal dilewati. +0 poin.";S.fbc="no";render()}}}
+ else{const mx=C.qs.reduce((a,q)=>a+maxOf(q),0),pc=Math.round(S.score/mx*100);
+ app.innerHTML=`<div class="end"><p class="sub">Hasil ${S.name?esc(S.name)+" · ":""}${C.name}</p><div class="big serif">${S.score}</div><p class="sub">dari ${mx} poin (${pc}%) — ${pc>=70?"Luar biasa.":pc>=40?"Cukup baik.":"Coba lagi untuk skor lebih tinggi."}</p>
+ <div class="acts"><button class="btn solid" id="ag">Main lagi</button><button class="btn" id="ct">Pilih kategori lain</button></div></div>`;
+ $("#ag").onclick=()=>start(S.cat);$("#ct").onclick=()=>go("cats")}}
+function renderRounds(){app.innerHTML=`<h2 class="serif">${S.name?`Halo, ${esc(S.name)}. `:""}Pilih babak</h2><p class="sub">Mainkan berurutan atau langsung ke babak mana saja.</p><div class="cats">${ROUNDS.map((r,i)=>`<button class="cat" data-i="${i}"><strong>${r.name} · ${r.title}</strong><span>${r.desc}</span><em>${r.rule}</em></button>`).join("")}</div>`;
+ document.querySelectorAll(".cat").forEach(b=>b.onclick=()=>{S.r=+b.dataset.i;CATS=ROUNDS[S.r].cats;S.r===2?start(0):go("cats")})}
+function renderTimed(){clearInterval(TI);const Rd=ROUNDS[S.r],C=CATS[S.cat],q=C.qs[S.qi],d=S.done;
+ app.innerHTML=`<div class="bar"><span>${C.name} · soal ${S.qi+1} dari ${C.qs.length}</span><span class="score">Skor <b>${S.score}</b></span></div>
+ <h2 class="serif q">${q.q}</h2>
+ ${d?`<div class="row ${S.ok?'f':'m'}"><span class="t">Jawaban: ${q.a}</span></div><p class="fb ${S.fbc}">${S.fb}</p><div class="ans"><button class="btn solid" id="nx">${S.qi+1<C.qs.length?"Soal berikutnya":"Lihat hasil"}</button></div>`:`<div class="tm"><i id="tb"></i></div><p class="bar" style="margin-top:6px"><span><b id="tt">${Rd.time}</b> detik tersisa</span><span>Benar +${Rd.pts}${Rd.neg?` · Salah −${Rd.neg}`:""}</span></p><div class="ans"><input type="text" id="in" placeholder="Ketik jawabanmu" autocomplete="off" aria-label="Jawaban"><button class="btn solid" id="sb">Jawab</button></div>`}`;
+ if(d){$("#nx").onclick=next;return}
+ const inp=$("#in");inp.focus();let left=Rd.time;
+ const fin=v=>{clearInterval(TI);S.done=true;if(v===null){S.ok=false;S.fb="Waktu habis. +0 poin.";S.fbc="no"}else if(mk(v,q.k)){S.ok=true;S.score+=Rd.pts;S.fb=`Benar! +${Rd.pts} poin.`;S.fbc="ok"}else{S.ok=false;S.score-=Rd.neg;S.fb=Rd.neg?`Salah. −${Rd.neg} poin.`:"Salah. +0 poin.";S.fbc="no"}render()};
+ const sub=()=>{if(norm(inp.value)||mn(inp.value))fin(inp.value)};
+ $("#sb").onclick=sub;inp.onkeydown=e=>{if(e.key==="Enter")sub()};
+ TI=setInterval(()=>{left-=.1;if(left<=0){fin(null);return}$("#tb").style.width=(left/Rd.time*100)+"%";$("#tt").textContent=Math.ceil(left)},100)}
+function renderMC(){const C=CATS[S.cat],q=C.qs[S.qi],k=S.cat+"-"+S.qi;
+ if(S.k!==k||!S.opts){S.k=k;S.opts=[...q.a,...(q.d||[]).map(l=>({l,p:0}))].sort(()=>Math.random()-.5)}
+ const p=S.found[0],d=S.done;
+ app.innerHTML=`<div class="bar"><span>${C.name} · soal ${S.qi+1} dari ${C.qs.length}</span><span class="score">Skor <b>${S.score}</b></span></div>
+ <h2 class="serif q">${q.q}</h2>
+ <div class="board">${S.opts.map((x,i)=>`<button class="row opt ${d?(i===p?'f':'m'):''}" data-i="${i}" ${d?'disabled':''}><span class="n">${'ABCDEFGH'[i]}</span><span class="t">${x.l}</span><span class="p">${d?x.p:''}</span></button>`).join('')}</div>
+ ${d?`<p class="fb ${S.fbc}">${S.fb}</p><div class="ans"><button class="btn solid" id="nx">${S.qi+1<C.qs.length?"Soal berikutnya":"Lihat hasil"}</button></div>`:`<p class="fb">Pilih satu jawaban.</p>`}`;
+ document.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{const i=+b.dataset.i,x=S.opts[i];S.found=[i];S.score+=x.p;S.done=true;S.fb=x.p?`Jawaban diterima! +${x.p} poin.`:"Jawaban kurang tepat. +0 poin.";S.fbc=x.p?"ok":"no";render()});
+ if(d)$("#nx").onclick=next}
+function esc(s){return s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+function submit(inp){const q=CATS[S.cat].qs[S.qi],v=inp.value;if(!norm(v))return;
+ const i=validate(v,q);
+ if(i>=0){S.found.push(i);S.score+=q.a[i].p;S.fb=`Benar! “${q.a[i].l}” +${q.a[i].p} poin`;S.fbc="ok"}
+ else{S.fb="Jawaban belum tepat. +0 poin.";S.fbc="no"}S.done=true;
+ render()}
+function next(){const C=CATS[S.cat];if(S.qi+1<C.qs.length){S.qi++;S.found=[];S.strikes=0;S.done=false;S.fb="";render()}else go("result")}
+$("#home").onclick=()=>go("cats");
+render();
+</script>
+</body>
+</html>
