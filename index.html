@@ -225,6 +225,20 @@ nav .btn:hover { background: var(--navink); color: var(--nav); }
   color: #fff;
   border-color: var(--wrong);
 }
+.opt-btn.disabled-wrong {
+  opacity: 0.55;
+  background: var(--wrong-bg);
+  border-color: var(--wrong);
+  cursor: not-allowed;
+}
+.shake {
+  animation: shake 0.35s ease-in-out;
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
 
 /* Benar / Salah Buttons */
 .tf-container { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
@@ -744,7 +758,9 @@ let state = {
   score: 0,
   selectedAns: null,
   isSubmitted: false,
-  isCorrect: false
+  isCorrect: false,
+  wrongAttempts: [],
+  wrongMsg: ""
 };
 
 const app = document.getElementById("app");
@@ -799,6 +815,8 @@ function startRound(idx) {
   state.selectedAns = null;
   state.isSubmitted = false;
   state.isCorrect = false;
+  state.wrongAttempts = [];
+  state.wrongMsg = "";
   state.screen = "quiz";
   render();
 }
@@ -807,6 +825,7 @@ function renderQuiz() {
   const round = DATA_ROUNDS[state.roundIdx];
   const q = round.questions[state.qIdx];
   const total = round.questions.length;
+  const isRound2 = (state.roundIdx === 1);
   const progressPercent = ((state.qIdx + (state.isSubmitted ? 1 : 0)) / total) * 100;
 
   let inputHtml = "";
@@ -816,12 +835,24 @@ function renderQuiz() {
       <div class="options-grid">
         ${q.opts.map(opt => {
           let extraClass = "";
-          if (state.isSubmitted) {
-            if (opt.k === q.ans) extraClass = "correct";
-            else if (opt.k === state.selectedAns) extraClass = "wrong";
+          let disabledAttr = "";
+          if (isRound2) {
+            if (state.isSubmitted) {
+              if (opt.k === q.ans) extraClass = "correct";
+              disabledAttr = "disabled";
+            } else if (state.wrongAttempts.includes(opt.k)) {
+              extraClass = "disabled-wrong shake";
+              disabledAttr = "disabled";
+            }
+          } else {
+            if (state.isSubmitted) {
+              if (opt.k === q.ans) extraClass = "correct";
+              else if (opt.k === state.selectedAns) extraClass = "wrong";
+              disabledAttr = "disabled";
+            }
           }
           return `
-            <button class="opt-btn ${extraClass}" onclick="submitMC('${opt.k}')" ${state.isSubmitted ? "disabled" : ""}>
+            <button class="opt-btn ${extraClass}" onclick="submitMC('${opt.k}')" ${disabledAttr}>
               <span class="key">${opt.k}</span>
               <span class="text">${opt.t}</span>
             </button>
@@ -834,12 +865,24 @@ function renderQuiz() {
       <div class="tf-container">
         ${["Benar", "Salah"].map(val => {
           let extraClass = "";
-          if (state.isSubmitted) {
-            if (val === q.ans) extraClass = "correct";
-            else if (val === state.selectedAns) extraClass = "wrong";
+          let disabledAttr = "";
+          if (isRound2) {
+            if (state.isSubmitted) {
+              if (val === q.ans) extraClass = "correct";
+              disabledAttr = "disabled";
+            } else if (state.wrongAttempts.includes(val)) {
+              extraClass = "wrong";
+              disabledAttr = "disabled";
+            }
+          } else {
+            if (state.isSubmitted) {
+              if (val === q.ans) extraClass = "correct";
+              else if (val === state.selectedAns) extraClass = "wrong";
+              disabledAttr = "disabled";
+            }
           }
           return `
-            <button class="tf-btn ${extraClass}" onclick="submitTF('${val}')" ${state.isSubmitted ? "disabled" : ""}>
+            <button class="tf-btn ${extraClass}" onclick="submitTF('${val}')" ${disabledAttr}>
               <span>${val === "Benar" ? "✓" : "✗"}</span> ${val}
             </button>
           `;
@@ -855,6 +898,17 @@ function renderQuiz() {
         </div>
       `;
     }
+  }
+
+  let wrongNoticeHtml = "";
+  if (isRound2 && !state.isSubmitted && state.wrongMsg) {
+    wrongNoticeHtml = `
+      <div class="feedback-box" style="border-color: var(--wrong); background: var(--wrong-bg);">
+        <div class="feedback-status no" style="margin-bottom: 0;">
+          ✗ ${state.wrongMsg}
+        </div>
+      </div>
+    `;
   }
 
   let feedbackHtml = "";
@@ -894,6 +948,7 @@ function renderQuiz() {
     <h2 class="serif q-title" style="white-space: pre-line;">${q.q}</h2>
 
     ${inputHtml}
+    ${wrongNoticeHtml}
     ${feedbackHtml}
   `;
 
@@ -908,21 +963,53 @@ function renderQuiz() {
 
 function submitMC(key) {
   if (state.isSubmitted) return;
+  const isRound2 = (state.roundIdx === 1);
   const q = DATA_ROUNDS[state.roundIdx].questions[state.qIdx];
-  state.selectedAns = key;
-  state.isSubmitted = true;
-  state.isCorrect = (key === q.ans);
-  if (state.isCorrect) state.score += 10;
+
+  if (isRound2) {
+    if (key === q.ans) {
+      state.selectedAns = key;
+      state.isSubmitted = true;
+      state.isCorrect = true;
+      state.wrongMsg = "";
+      if (state.wrongAttempts.length === 0) state.score += 10;
+      else state.score += 5; // beri poin bila berhasil di percobaan selanjutnya
+    } else {
+      if (!state.wrongAttempts.includes(key)) state.wrongAttempts.push(key);
+      state.wrongMsg = "Jawaban belum tepat! Silakan coba pilih opsi lainnya.";
+    }
+  } else {
+    state.selectedAns = key;
+    state.isSubmitted = true;
+    state.isCorrect = (key === q.ans);
+    if (state.isCorrect) state.score += 10;
+  }
   render();
 }
 
 function submitTF(val) {
   if (state.isSubmitted) return;
+  const isRound2 = (state.roundIdx === 1);
   const q = DATA_ROUNDS[state.roundIdx].questions[state.qIdx];
-  state.selectedAns = val;
-  state.isSubmitted = true;
-  state.isCorrect = (val === q.ans);
-  if (state.isCorrect) state.score += 10;
+
+  if (isRound2) {
+    if (val === q.ans) {
+      state.selectedAns = val;
+      state.isSubmitted = true;
+      state.isCorrect = true;
+      state.wrongMsg = "";
+      if (state.wrongAttempts.length === 0) state.score += 10;
+      else state.score += 5;
+    } else {
+      if (!state.wrongAttempts.includes(val)) state.wrongAttempts.push(val);
+      state.wrongMsg = "Jawaban belum tepat! Silakan pilih kembali.";
+    }
+  } else {
+    state.selectedAns = val;
+    state.isSubmitted = true;
+    state.isCorrect = (val === q.ans);
+    if (state.isCorrect) state.score += 10;
+  }
   render();
 }
 
@@ -932,12 +1019,36 @@ function submitShort() {
   if (!inp || !inp.value.trim()) return;
 
   const val = inp.value.trim();
+  const isRound2 = (state.roundIdx === 1);
   const q = DATA_ROUNDS[state.roundIdx].questions[state.qIdx];
-  state.selectedAns = val;
-  state.isSubmitted = true;
-  state.isCorrect = checkShortAnswer(val, q.keys || [q.ans], q.ans);
-  if (state.isCorrect) state.score += 10;
-  render();
+  const isCorrect = checkShortAnswer(val, q.keys || [q.ans], q.ans);
+
+  if (isRound2) {
+    if (isCorrect) {
+      state.selectedAns = val;
+      state.isSubmitted = true;
+      state.isCorrect = true;
+      state.wrongMsg = "";
+      if (state.wrongAttempts.length === 0) state.score += 10;
+      else state.score += 5;
+      render();
+    } else {
+      if (!state.wrongAttempts.includes(val)) state.wrongAttempts.push(val);
+      state.wrongMsg = `Jawaban "${val}" belum tepat. Silakan coba tebak lagi!`;
+      render();
+      const newInp = document.getElementById("short-input");
+      if (newInp) {
+        newInp.focus();
+        newInp.select();
+      }
+    }
+  } else {
+    state.selectedAns = val;
+    state.isSubmitted = true;
+    state.isCorrect = isCorrect;
+    if (state.isCorrect) state.score += 10;
+    render();
+  }
 }
 
 function nextQuestion() {
@@ -947,6 +1058,8 @@ function nextQuestion() {
     state.selectedAns = null;
     state.isSubmitted = false;
     state.isCorrect = false;
+    state.wrongAttempts = [];
+    state.wrongMsg = "";
     render();
   } else {
     state.screen = "end";
